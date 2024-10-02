@@ -3,7 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Role</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="/user">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     User
                 </a>
@@ -19,16 +19,10 @@
                         <a class="nav-link" href="/barang">Barang</a>
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                <div class="sb-sidenav-menu-heading">TRANSAKSI</div>
+                <a class="nav-link" href="/transaksi">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Transaksi
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-                <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="/detailtransaksi">Detail Transaksi</a>
-                        <a class="nav-link" href="/transaksi">Transaksi</a>
-                    </nav>
-                </div>
     </nav>
 </div>

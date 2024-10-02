@@ -27,14 +27,15 @@ class JenisBarangController extends Controller
 
     public function update(Request $request, $id)
     {
-        JenisBarang::where('id', $id)->where('id,', $id)->update([
+            $jenis = JenisBarang::find($id);
+            $jenis->update([
             'nama_jenis' => $request->nama_jenis,
         ]);
         return redirect('/jenisbarang')->with('success', 'Data Berhasil');
     }
 
     public function destroy($id)
-    {
+    {   
         $data = JenisBarang::find($id);
         $data->delete();
         return redirect('/jenisbarang')->with('success', 'Data Berhasil');

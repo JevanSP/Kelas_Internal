@@ -4,18 +4,18 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Data {{ $title }}</h1>
+            <h1 class="mt-4">{{ $title }}</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Yuk Di Beli{{ $title }}</li>
+                <li class="breadcrumb-item active">MEBEL GACOR</li>
             </ol>
             <div class="row">
             </div>
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-table me-1"></i>
-                    Data {{ $title }}
+                    {{ $title }}
                 </div>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalcreate">+ TAMBAH DATA</button>
+                <a href="/transaksi/add" class="btn btn-primary">+ TAMBAH TRANSAKSI</a>
                 <div class="card-body">
                     <table id="datatablesSimple">
                         <thead>
@@ -36,12 +36,12 @@
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ date('d-m-Y', strtotime($row->tgl_transaksi)) }}</td>
-                                <td>{{ $row->total_bayar }}</td>
-                                <td>{{ $row->uang_masuk }}</td>
-                                <td>{{ $row->uang_kembalian }}</td>
+                                <td>{{ number_format($row->total_bayar) }}</td>
+                                <td>{{ number_format($row->uang_masuk) }}</td>
+                                <td>{{ number_format($row->uang_kembalian) }}</td>
                                 <td>
-                                    <a href=#modalEdit {{ $row->id }} data-bs-toggle="modal" class="btn btn-primary"><i class="fas fa-edit"></i>Edit</a>
-                                    <a href=#modalDelete {{ $row->id }} data-bs-toggle="modal" class="btn btn-danger"><i class="fas fa-trash"></i>Delete</a>
+                                  <button type="button" href=/detailtransaksi/add class="btn btn-primary"><i class="fas fa-detail"></i>Detail</a></button>
+                                  <button type="button" data-bs-target="#modaldelete{{ $row->id }}" data-bs-toggle="modal" class="btn btn-danger"><i class="fas fa-trash"></i>Delete</button>
                                 </td>
                             </tr>
                           @endforeach
@@ -52,7 +52,7 @@
         </div>
     </main>
 </div>
-<div class="modal fade" id="modalcreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="modalcreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -146,6 +146,6 @@
     </div>
   </div>
 </div>
-@endforeach
+@endforeach --}}
 @endsection 
 

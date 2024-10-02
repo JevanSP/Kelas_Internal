@@ -8,12 +8,17 @@ class DetailTransaksiController extends Controller
 {
     public function index()
     {
-        $data = array(
-            'title' => 'Detail Transaksi',
-            'data_detail_transaksi' => DetailTransaksi::all(),
-        );
-        return view('kasir.detailtransaksi.list', $data);
+            $title = 'Data Detail Transaksi';
+            $data_detail_transaksi = DetailTransaksi::all();
+        return view('kasir.detailtransaksi.list', compact('data_detail_transaksi', 'title'));
     }       
+
+    public function add()
+    {
+            $title = 'Data Barangi';
+            $data_barang = DetailTransaksi::all();
+        return view('kasir.detailtransaksi.add', compact('data_detail_barang', 'title'));
+    }   
 
     public function store(Request $request)
     {

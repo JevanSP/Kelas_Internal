@@ -4,7 +4,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Data {{ $title }}</h1>
+            <h1 class="mt-4">{{ $title }}</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active">Yuk Di Beli{{ $title }}</li>
             </ol>
@@ -34,7 +34,7 @@
                             @endphp
                           @foreach ( $data_detail_transaksi as $row )
                             <tr>
-                                <td>{{ $no++ }}</td>
+                                <td>NT-00{{ $no++ }}</td>
                                 <td>{{ $row->nama_barang }}</td>
                                 <td>{{ $row->harga }}</td>
                                 <td>{{ $row->qty }}</td>
@@ -52,7 +52,7 @@
         </div>
     </main>
 </div>
-<div class="modal fade" id="modalcreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="modalcreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -81,7 +81,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-undo"></i></button>
-        <button type="button" class="btn btn-primary" class="fas fa-save">Save Changes</button>
+        <button type="submit" class="btn btn-primary" class="fas fa-save">Save Changes</button>
       </div>
       </form>
     </div>
@@ -118,7 +118,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-undo">Close</i></button>
-        <button type="button" class="btn btn-primary" class="fas fa-save">Save Changes</button>
+        <button type="submit" class="btn btn-primary" class="fas fa-save">Save Changes</button>
       </div>
       </form>
     </div>
@@ -141,12 +141,12 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-undo">Close</i></button>
-        <button type="button" class="btn btn-danger" class="fas fa-trash">Buak</button>
+        <button type="submit" class="btn btn-danger" class="fas fa-trash">Buak</button>
       </div>
       </form>
     </div>
   </div>
 </div>
-@endforeach
+@endforeach --}}
 @endsection 
 

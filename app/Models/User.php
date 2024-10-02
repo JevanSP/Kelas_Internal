@@ -17,13 +17,14 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
     protected $hidden = [
         'password',
     ];
 
-    const CREATED_AT = 'create_date';
-    const UPDATEED_AT = 'update_date';
+    // const CREATED_AT = 'create_date';
+    // const UPDATEED_AT = 'update_date';
 
     public function transaksi(): HasMany
     {

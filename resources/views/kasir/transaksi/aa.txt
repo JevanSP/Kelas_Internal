@@ -1,0 +1,210 @@
+ @csrf
+        <div class="card-body">
+            <div class="mb-3"> <label class="form-label">Nama Barang</label>
+                <select class="form-control" name="id_jenis" required>
+                    <option value="" hidden>-- Nama Barang --</option>
+                    @foreach ($data_detail_transaksi as $row)
+                        <option value="{{ $row->id }}">{{ $row->nama_barang }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3"> <label for="harga" class="form-label">Harga</label> <input name="qty"
+                    type="number" class="form-control" id="harga">
+            </div>
+            <div class="mb-3"> <label for="qty" class="form-label">Harga</label> <input name="harga"
+                    type="number" class="form-control" id1="qty">
+            </div>
+            <div class="mb-3"> <label for="stok" class="form-label">Stok</label> <input name="stok"
+                    type="text" class="form-control" id="stok">
+            </div>
+        </div>
+        <div class="card-footer"> <button type="submit" class="btn btn-primary">Submit</button> </div>
+
+
+
+
+
+
+ccadad 
+    <div class="app-content-header"> 
+        <div class="container-fluid"> 
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3 class="mb-0">Data {{ $title }}</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Dashboard
+                        </li>
+                    </ol>
+                </div>
+            </div> 
+        </div> 
+    </div> 
+    <div class="card card-primary card-outline mb-4"> 
+        <div class="card-header">
+            <div class="card-title">Tambah {{ $title }}</div>
+        </div> 
+        <form action="detailtransaksi/store/" method="POST" enctype="multipart/form-data"> 
+            @csrf
+            <div class="card-body">
+              <div class="mb-3"> <label class="form-label">Nama Barang</label>
+                <select class="form-control" name="id_jenis" required>
+                    <option value="" hidden>-- Nama Barang --</option>
+                    @foreach ($data_transaksi as $row)
+                        <option value="{{ $row->id }}">{{ $row->nama_barang }}</option>
+                    @endforeach
+                </select>
+            </div>
+                <div class="mb-3"> <label for="harga" class="form-label">Harga</label> <input
+                        name="qty" type="number" class="form-control" id="harga">
+                </div>
+                <div class="mb-3"> <label for="qty" class="form-label">Harga</label> <input 
+                  name="harga" type="number" class="form-control" id1="qty">
+                </div>
+                <div class="mb-3"> <label for="stok" class="form-label">Stok</label> <input 
+                  name="stok" type="text" class="form-control" id="stok"> 
+                </div>
+            </div> 
+            <div class="card-footer"> <button type="submit" class="btn btn-primary">Submit</button> </div>
+        </form> 
+    </div>  
+@endsection
+
+
+
+
+
+dhjfbsjkdbsd
+
+<div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Data {{ $title }}</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">MEBEL GACOR</li>
+                </ol>
+                <div class="row">
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        {{ $title }}
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalcreate">+
+                        TAMBAH DATA</button>
+                    <div class="card-body">
+                        <table id="datatablesSimple">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga</th>
+                                    <th>Qty</th>
+                                    <th>Subtotal</th>
+                                    <th>Action</th>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">Total Bayar</td>
+                                    <td>Total Bayar</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php
+                                    $no = 1;
+                                @endphp
+                                @foreach ($data_detail_transaksi as $row)
+                                    <tr>
+                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $row->nama_barang }}</td>
+                                        <td>Rp.{{ number_format($row->harga) }}</td>
+                                        <td>{{ $row->qty }}</td>
+                                        <td>Rp.{{ number_format($row->subtotal) }}</td>
+                                        <td>
+                                            <button type="button" data-bs-target="#modaldelete{{ $row->id }}"
+                                                data-bs-toggle="modal" class="btn btn-danger"><i
+                                                    class="fas fa-trash"></i>Delete</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal fade" id="modalcreate" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Tambah Data</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/detailtransaksi/store/">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label>Nama Barang</label>
+                            <select class="form-control" name="id_barang">
+                                <option value="" hidden>-- Nama Barang --</option>
+                                @foreach ($data_barang as $b)
+                                    <option value="{{ $b->id }}">{{ $b->nama_barang }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">   
+                            <label>Foto</label> 
+                            <img class="form-control rounded mx-auto d-block" value="{{ old('foto') }}" name="foto"></img>
+                        <div class="form-group mb-2">
+                            <label>Harga</label>
+                            <input class="form-control" type="text" value="{{ old('harga') }}"
+                                aria-label="readonly input example" name="harga"readonly>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Qty</label>
+                            <input type="number" class="form-control" name="qty"required>
+                        </div>
+                        <div class="form-group mb-2">
+                            <label>Subtotal</label>
+                            <input type="number" class="form-control" name="subtotal"required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
+                                    class="fas fa-undo"></i></button>
+                            <button type="submit" class="btn btn-primary" class="fas fa-save">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @foreach ($data_detail_transaksi as $c)
+        <div class="modal fade" id="modaldelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Hapus {{ $title }}</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="GET" action="/detailtransaksi/destroy/{{ $c->id }}">
+                            @csrf
+                            <div class="form-group">
+                                <h5>Apakah anda yakin ingin menghapus data ini?</h5>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
+                                        class="fas fa-undo">Close</i></button>
+                                <button type="submit" class="btn btn-danger" class="fas fa-trash">Buak</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach

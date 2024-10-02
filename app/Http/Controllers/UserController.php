@@ -17,30 +17,52 @@ class UserController extends Controller
     //     return view('user.create');
     // }
     
-{
-    // Display all users
+    {
     public function index() {
-        $users = User::all();
-        return response()->json($users);
+        // $users = User::all();
+        // return response()->json($users);
+        $data = array(
+            'title' => 'User',
+            'data_user' => User::all(),
+        );
+        return view('admin.master.user.list', $data);
     }
 
-    // Store a new user
+    
     public function store(Request $request) {
-        $user = User::create($request->all());
-        return response()->json($user);
-    }
+        // // $user = User::create($request->all());
+        // return response()->json($user);
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
+        ]);
+        return redirect('/user')->with('success', 'Data Berhasil');
+    }   
 
-    // Update a user
+
     public function update(Request $request, $id) {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return response()->json($user);
+        // $user = User::findOrFail($id);
+        // $user->update($request->all());
+        // return response()->json($user);
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
+        ]);
+        return redirect('/user')->with('success', 'Data Berhasil');
     }
 
     // Delete a user
     public function destroy($id) {
-        User::destroy($id);
-        return response()->json(['message' => 'User deleted successfully']);
+        // User::destroy($id);
+        // return response()->json(['message' => 'User deleted successfully']);
+        $data = User::find($id);
+        $data->delete();
+        return redirect('/user')->with('success', 'Data Berhasil');
     }
 
 
