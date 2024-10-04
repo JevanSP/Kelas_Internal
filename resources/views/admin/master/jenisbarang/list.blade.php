@@ -14,8 +14,7 @@
                         <i class="fas fa-table me-1"></i>
                         Data {{ $title }}
                     </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalcreate">+
-                        TAMBAH DATA</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalcreate">+ TAMBAH DATA</button>
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
@@ -76,7 +75,7 @@
     </div>
 
     @foreach ($data_jenis_barang as $d)
-        <div class="modal fade" id="modaledit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modaledit{{ $d->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -104,7 +103,7 @@
     @endforeach
 
     @foreach ($data_jenis_barang as $c)
-        <div class="modal fade" id="modaldelete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="modaldelete{{ $c->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

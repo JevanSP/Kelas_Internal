@@ -45,10 +45,10 @@
                                         <td>Rp. {{ number_format($row->harga) }}</td>
                                         <td class="text-center">{{ $row->stok }}</td>
                                         <td class="text-center">
-                                            <button type="button" data-bs-target="#modaledit{{ $row->id }}"
+                                            <a  href="#modaledit{{ $row->id }}"
                                                 data-bs-toggle="modal" class="btn btn-primary"><i
                                                     class="fas fa-edit"></i>Edit</button>
-                                            <button type="button" data-bs-target="#modaldelete{{ $row->id }}"
+                                            <a href="#modaldelete{{ $row->id }}"
                                                 data-bs-toggle="modal" class="btn btn-danger"><i
                                                     class="fas fa-trash"></i>Delete</button>
                                         </td>
@@ -181,6 +181,7 @@
                     </div>
                     <div class="modal-body">
                         <form method="GET" action="/barang/destroy/{{ $c->id }}">
+                            @csrf
                             <div class="form-group">
                                 <h5>Apakah anda yakin ingin menghapus data ini?</h5>
                             </div>

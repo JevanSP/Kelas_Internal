@@ -37,7 +37,7 @@ class TransaksiController extends Controller
         ]);
         Transaksi::create([
             'no_transaksi'  => $request->no_transaksi,
-            'tgl_transaksi' => $request->tgl_transaksi,
+            'created_at' => $request->tgl_transaksi,
             'total_harga'   => $request->subtotal == $request->total_harga,
             'uang_masuk'    => $request->uang_masuk,
             'kembalian'     => $request->uang_masuk - $request->total_harga == $request->kembalian

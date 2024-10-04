@@ -7,17 +7,7 @@ use App\Models\User;
 class UserController extends Controller
 
 
-    // public function index()
-    // {
-    //     return view('user.index');
-    // }   
-
-    // public function create()
-    // {
-    //     return view('user.create');
-    // }
-    
-    {
+{
     public function index() {
         // $users = User::all();
         // return response()->json($users);
