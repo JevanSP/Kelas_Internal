@@ -5,31 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\JenisBarang;
+use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
 
-    public function index() 
-    { 
+    public function index()
+    {
         $data = array(
             'title'        => 'Barang',
             'data_jenis'   => JenisBarang::all(),
             'data_barang'  => Barang::join('jenis_barang', 'jenis_barang.id', '=', 'barang.id_jenis')
-                                    ->select('barang.*', 'jenis_barang.nama_jenis')
-                                    ->get(),
+                ->select('barang.*', 'jenis_barang.nama_jenis')
+                ->get(),
         );
-    
+
         return view('admin.master.barang.list', $data);
-    }   
+    }
     
-
-    // public function add() 
-    // { 
-    //     $title = 'Jenis Barang';
-    //     $data_barang = Jenisbarang::all();
-    //     return view('admin.master.barang.add', compact('data_barang', 'title'));
-    // }
-
     public function store(Request $request)
     {
         // $request->validate([
@@ -39,7 +32,7 @@ class BarangController extends Controller
         // upload file
         $foto = $request->file('foto');
         $path = $foto->store('barang', 'public');
-        
+
         Barang::create([
             'nama_barang'    => $request->nama_barang,
             'foto'           => $path,
@@ -49,25 +42,44 @@ class BarangController extends Controller
         ]);
 
         return redirect('/barang')->with('success', 'Data Berhasil');
-    }   
+    }
 
     public function update(Request $request, $id)
     {
         // $request->validate([
         //     'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
+        $barang = Barang::findOrFail($id);
 
-        // upload file
-        $foto = $request->file('foto');
-        $foto->storeAs('/public/barang', $foto->hashName());
-        $barang = Barang::find($id);
-        $barang->update([
-            'nama_barang'    => $request->nama_barang,
-            'foto'           => $foto->hashName(),
-            'id_jenis'       => $request->id_jenis,
-            'harga'          => $request->harga,
-            'stok'           => $request->stok,
-        ]);
+        //update barang dengan foto
+        if ($request->hasFile('foto')) {
+
+            //upload image
+            $foto = $request->file('foto');
+            $foto->storeAs('/public/barang', $foto->hashName());
+
+            //delete old image
+            Storage::delete('public/barang'.$barang->foto);
+
+            //update product
+            $barang->update([
+                'nama_barang'    => $request->nama_barang,
+                'foto'           => $foto->hashName(),
+                'id_jenis'       => $request->id_jenis,
+                'harga'          => $request->harga,
+                'stok'           => $request->stok,
+            ]);
+
+        } else {
+
+            //update product without image
+            $barang->update([
+                'nama_barang' => $request->nama_barang,
+                'id_jenis'    => $request->id_jenis,
+                'harga'       => $request->harga,
+                'stok'        => $request->stok
+            ]);
+        }
         return redirect('/barang')->with('success', 'Data Berhasil');
     }
 

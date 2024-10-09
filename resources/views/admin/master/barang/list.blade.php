@@ -17,7 +17,7 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalcreate">+
                         TAMBAH DATA</button>
                     <div class="card-body">
-                        <table id="datatablesSimple">
+                        <table class="" id="datatablesSimple">
                             <thead>
                                 <tr>
                                     <th class="text-center">No</th>
@@ -171,28 +171,31 @@
     @endforeach
 
     @foreach ($data_barang as $c)
-        <div class="modal fade" id="modaldelete{{ $c->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5">Edit {{ $title }}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="GET" action="/barang/destroy/{{ $c->id }}">
-                            @csrf
-                            <div class="form-group">
-                                <h5>Apakah anda yakin ingin menghapus data ini?</h5>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
-                                        class="fas fa-undo">Close</i></button>
-                                <button type="submit" class="btn btn-danger" class="fas fa-trash">Buak</button>
-                            </div>
-                        </form>
-                    </div>
+    <div class="modal fade" id="modaldelete{{ $c->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Barang</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form method="GET" action="barang/destroy/{{ $c->id }}">
+                    @csrf
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <h7>Apakah anda yakin ingin menghapus data ini?</h7>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-danger">Buak</button>
+                    </div>
+                </form>
             </div>
-    @endforeach
+        </div>
+    </div>
+@endforeach
 @endsection

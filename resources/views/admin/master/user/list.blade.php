@@ -23,7 +23,6 @@
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
-                                    <th>Password</th>
                                     <th>Role</th>
                                     <th>Action</th>
                                 </tr>
@@ -37,13 +36,12 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->email }}</td>
-                                        <td>{{ $row->password }}</td>
                                         <td>{{ $row->role }}</td>
                                         <td>
-                                            <button type="button" data-bs-target="#modaledit{{ $row->id }}"
+                                            <a type="button" href="#modaledit{{ $row->id }}"
                                                 data-bs-toggle="modal" class="btn btn-primary"><i
                                                     class="fas fa-edit"></i>Edit</button>
-                                            <button type="button" data-bs-target="#modaldelete{{ $row->id }}"
+                                            <a type="button" href="#modaldelete{{ $row->id }}"
                                                 data-bs-toggle="modal" class="btn btn-danger"><i
                                                     class="fas fa-trash"></i>Delete</button>
                                         </td>
@@ -81,6 +79,7 @@
                         <div class="form-group">
                             <label>Role</label>
                             <select name="role" class="form-control">
+                                <option value="" hidden>-- Pilih Role --</option>
                                 <option value="admin">Admin</option>
                                 <option value="kasir">Kasir</option>
                             </select>
@@ -120,14 +119,17 @@
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="text" value="{{ $d->password }}" class="form-control"
-                                    name="password"required>
+                                <input type="text" class="form-control"
+                                    name="password">
                             </div>
                             <div class="form-group">
                                 <label>Role</label>
-                                <select name="role" class="form-control" value="{{ $d->role }}">
-                                    <option value="admin">Admin</option>
-                                    <option value="kasir">Kasir</option>
+                                <select name="role" class="form-control" required>
+                                    <option value="" hidden>-- pilih role --</option>
+                                    <option value="{{ $d->role }}" {{ $d->role == 'admin' ? 'selected' : '' }}>
+                                        admin</option>
+                                    <option value="{{ $d->role }}" {{ $d->role == 'kasir' ? 'selected' : '' }}>
+                                        kasir</option>
                                 </select>
                             </div>
                     </div>
@@ -143,27 +145,31 @@
     @endforeach
 
     @foreach ($data_user as $c)
-        <div class="modal fade" id="modaldelete{{ $c->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5">Edit {{ $title }}</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form method="GET" action="/user/destroy/{{ $c->id }}">
-                            <div class="form-group">
-                                <h5>Apakah anda yakin ingin menghapus data ini?</h5>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i
-                                        class="fas fa-undo">Close</i></button>
-                                <button type="submit" class="btn btn-danger" class="fas fa-trash">Buak</button>
-                            </div>
-                        </form>
-                    </div>
+    <div class="modal fade" id="modaldelete{{ $c->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete User</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form method="GET" action="user/destroy/{{ $c->id }}">
+                    @csrf
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <h7>Apakah anda yakin ingin menghapus data ini?</h7>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-outline-danger">Buak</button>
+                    </div>
+                </form>
             </div>
-    @endforeach
+        </div>
+    </div>
+@endforeach
 @endsection

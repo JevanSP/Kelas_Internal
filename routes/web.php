@@ -7,11 +7,16 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DetailTransaksiController;
+use App\Http\Controllers\LoginController;
 use App\Models\JenisBarang;
 
-Route::get('/', function () {
-    return view('layout.layout');
-});
+route::get('/', [LoginController::class, 'login'])->name('login');
+
+route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+
+route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+route::get('/dashboard', [HomeController::class, 'dashboard']);
 
 // Route::get('/',[HomeController::class, 'home']);
 
@@ -57,4 +62,3 @@ route::get('/detailtransaksi/add', [DetailTransaksiController::class, 'add']);
 route::post('/detailtransaksi/store', [DetailTransaksiController::class, 'store']);
 route::post('/detailtransaksi/update/{id}', [DetailTransaksiController::class, 'update']);
 route::get('/detailtransaksi/delete/{id}', [DetailTransaksiController::class, 'delete']);
-

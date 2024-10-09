@@ -24,13 +24,14 @@ class DetailTransaksi extends Model
     const CREATED_AT = 'creation_date';
     const UPDATEED_AT = 'update_date';
 
-    public function transaksi(): BelongsTo
-    {
-        return $this->belongsTo(Transaksi::class,'no_transaksi');
-    }
-
     public function barang():HasMany
+
     {
         return $this->hasMany(Barang::class,'nama_barang');
+    }
+    public function transaksi(): BelongsTo
+
+    {
+        return $this->belongsTo(transaksi::class ,'no_transaksi');
     }
 }

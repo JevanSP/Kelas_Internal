@@ -40,8 +40,8 @@
                                 <td>{{ number_format($row->uang_masuk) }}</td>
                                 <td>{{ number_format($row->uang_kembalian) }}</td>
                                 <td>
-                                  <button type="button" href=/detailtransaksi/add class="btn btn-primary"><i class="fas fa-detail"></i>Detail</a></button>
-                                  <button type="button" data-bs-target="#modaldelete{{ $row->id }}" data-bs-toggle="modal" class="btn btn-danger"><i class="fas fa-trash"></i>Delete</button>
+                                  <button type="button" href=/detailtransaksi/detail class="btn btn-primary"><i class="fas fa-detail"></i>Detail</a></button>
+                                  {{-- <button type="button" data-bs-target="#modaldelete{{ $row->id }}" data-bs-toggle="modal" class="btn btn-danger"><i class="fas fa-trash"></i>Delete</button> --}}
                                 </td>
                             </tr>
                           @endforeach
