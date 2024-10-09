@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DetailTransaksi;
+use Illuminate\Support\Facades\Auth;
+
 class DetailTransaksiController extends Controller
 {
     public function index()
     {
+        if (Auth::user()->role != 'kasir') {
+            return redirect('/')->with('error', 'Unauthorized access');
+        }
+
             $title = 'Data Detail Transaksi';
             $data_detail_transaksi = DetailTransaksi::all();
         return view('kasir.detailtransaksi.list', compact('data_detail_transaksi', 'title'));
@@ -15,6 +21,10 @@ class DetailTransaksiController extends Controller
 
     public function add()
     {
+        if (Auth::user()->role != 'admin') {
+            return redirect('/')->with('error', 'Unauthorized access');
+        }
+
             $title = 'Data Barangi';
             $data_barang = DetailTransaksi::all();
         return view('kasir.detailtransaksi.add', compact('data_detail_barang', 'title'));

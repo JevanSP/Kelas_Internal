@@ -8,30 +8,16 @@ use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DetailTransaksiController;
 use App\Http\Controllers\LoginController;
-use App\Models\JenisBarang;
 
-route::get('/', [LoginController::class, 'login'])->name('login');
 
-route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+route::get('/', [LoginController::class, 'index'])->name('login');
+
+route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
 
 route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-route::get('/dashboard', [HomeController::class, 'dashboard']);
+route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
-// Route::get('/',[HomeController::class, 'home']);
-
-// route::middleware(['role:admin,auth'])->group(function () {
-//     Route::resource('user', UserController::class);
-//     Route::resource('jenis_barang', JenisBarangController::class);
-//     Route::resource('barang', BarangController::class);
-//     Route::resource('detail_transaksi', DetailTransaksiController::class);
-//     Route::resource('transaksi', TransaksiController::class);
-// });
-
-// route::middleware('role:kasir,auth')->group(function () {
-//     Route::resource('transaksi', TransaksiController::class);
-//     Route::resource('detail_transaksi', DetailTransaksiController::class);
-// });
 route::get('/user', [UserController::class, 'index']);
 route::get('/user/create', [UserController::class, 'create']);
 route::post('/user/store', [UserController::class, 'store']);
@@ -43,7 +29,6 @@ route::get('/barang/create', [BarangController::class, 'create']);
 route::post('/barang/store', [BarangController::class, 'store']);
 route::post('/barang/update/{id}', [BarangController::class, 'update']);
 route::get('/barang/destroy/{id}', [BarangController::class, 'destroy']);
-
 
 route::get('/jenisbarang', [JenisBarangController::class, 'index']);
 route::get('/jenisbarang/create', [JenisBarangController::class, 'create']);

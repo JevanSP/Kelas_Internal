@@ -6,12 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\JenisBarang;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class BarangController extends Controller
 {
 
     public function index()
     {
+        if (Auth::user()->role != 'admin') {
+            return redirect('/')->with('error', 'Unauthorized access');
+        }
+
         $data = array(
             'title'        => 'Barang',
             'data_jenis'   => JenisBarang::all(),
@@ -25,6 +30,10 @@ class BarangController extends Controller
     
     public function store(Request $request)
     {
+        if (Auth::user()->role != 'admin') {
+            return redirect('/')->with('error', 'Unauthorized access');
+        }
+
         // $request->validate([
         //     'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
@@ -46,6 +55,10 @@ class BarangController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (Auth::user()->role != 'admin') {
+            return redirect('/')->with('error', 'Unauthorized access');
+        }
+
         // $request->validate([
         //     'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         // ]);
@@ -85,6 +98,10 @@ class BarangController extends Controller
 
     public function destroy($id)
     {
+        if (Auth::user()->role != 'admin') {
+            return redirect('/')->with('error', 'Unauthorized access');
+        }
+
         $data = Barang::find($id);
         $data->delete();
         return redirect('/barang')->with('success', 'Data Berhasil');
