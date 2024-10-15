@@ -30,6 +30,6 @@ class Barang extends Model
     }
     public function detail_transaksi():HasMany
     {
-        return $this->hasMany(DetailTransaksi::class,'no_transaksi');
+        return $this->hasMany(DetailTransaksi::class,'transaksi_id');
     }
 }

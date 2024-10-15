@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('no_transaksi');
-            $table->date('tgl_transaksi')->nullable();
+            $table->date('tgl_transaksi');
+            $table->foreignId('user_id');
             $table->bigInteger('total_bayar')->nullable();
             $table->bigInteger('uang_masuk')->nullable();
             $table->bigInteger('kembalian')->nullable();

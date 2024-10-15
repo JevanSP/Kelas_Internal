@@ -14,24 +14,23 @@ class DetailTransaksi extends Model
     protected $table = 'detail_transaksi';
 
     protected $fillable = [
-        'no_transaksi',
-        'nama_barang',
+        'transaksi_id',
+        'barang_id',
         'harga',
         'qty',
         'subtotal',
     ];
 
-    const CREATED_AT = 'creation_date';
-    const UPDATEED_AT = 'update_date';
+    
 
-    public function barang():HasMany
+    public function barang():BelongsTo
 
     {
-        return $this->hasMany(Barang::class,'nama_barang');
+        return $this->belongsTo(Barang::class,'barang_id');
     }
     public function transaksi(): BelongsTo
 
     {
-        return $this->belongsTo(transaksi::class ,'no_transaksi');
+        return $this->belongsTo(transaksi::class);
     }
 }

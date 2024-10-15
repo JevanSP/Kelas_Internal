@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>MEBEL GACOR</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.bootstrap5.css">
@@ -58,5 +59,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
         <script src="{{ asset('assets/js/datatables-simple-demo.js') }}"></script>
+        <script>
+            const connectedSortables =
+                document.querySelectorAll(".connectedSortable");
+            connectedSortables.forEach((connectedSortable) => {
+                let sortable = new Sortable(connectedSortable, {
+                    group: "shared",
+                    handle: ".card-header",
+                });
+            });
+    
+            const cardHeaders = document.querySelectorAll(
+                ".connectedSortable .card-header",
+            );
+            cardHeaders.forEach((cardHeader) => {
+                cardHeader.style.cursor = "move";
+            });
+        </script>
+        @yield('js')
     </body>
 </html>

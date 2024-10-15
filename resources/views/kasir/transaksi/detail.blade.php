@@ -3,7 +3,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">Data {{ $title }}</h1>
+                <h1 class="mt-4">{{ $title }}</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">MEBEL GACOR</li>
                 </ol>
@@ -11,17 +11,19 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        Detail {{ $title }}
+                        @if ($data_detail_transaksi->detail_transaksi->isnotempty())
+                            <h3>NT-{{ $data_detail_transaksi->detail_transaksi->first()->transaksi_id }}</h3>
+                        @endif
+                        
                     </div>
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
-                                    <th>No Transaksi</th>
+                                    <th>No</th>
                                     <th>Nama Barang</th>
-                                    <th>Harga</th>
                                     <th>Qty</th>
+                                    <th>Harga</th>
                                     <th>Subtotal</th>
                                 </tr>
                             </thead>          
@@ -29,13 +31,13 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ( $data_detail_transaksi as $row )
+                                @foreach ( $data_detail_transaksi->detail_transaksi as $row )
                                 <tr>
-                                    <td>NT-00{{ $no++ }}</td>
-                                    <td>{{ $row->nama_barang }}</td>
-                                    <td>{{ number_format($row->harga) }}</td>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $row->barang->nama_barang }}</td>
                                     <td>{{ $row->qty }}</td>
-                                    <td>{{ number_format($row->subtotal) }}</td>
+                                    <td>Rp. {{ number_format($row->barang->harga) }}</td>
+                                    <td>Rp. {{ number_format($row->subtotal) }}</td>
                                 </tr>
                                 @endforeach
                             </tbody>

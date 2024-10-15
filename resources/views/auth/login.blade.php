@@ -37,41 +37,18 @@
                                                 <small>{{ $message }}</small>
                                             @enderror
                                             <div class="row">
-                                                <div class="col-8">
-                                                    <div class="form-check"> <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault"> <label class="form-check-label" for="flexCheckDefault">
-                                                            Remember Me
-                                                        </label> </div>
-                                                </div> <!-- /.col -->
-                                                <div class="col-4">
+                                                <div class="col-12">
                                                     <div class="d-grid gap-2"> <button type="submit" class="btn btn-primary">Sign In</button>
                                                     </div>
                                                 </div> <!-- /.col -->
                                             </div> <!--end::Row-->
                                         </form>
                                     </div>
-                                    <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
-            </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

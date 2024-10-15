@@ -9,7 +9,6 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\DetailTransaksiController;
 use App\Http\Controllers\LoginController;
 
-
 route::get('/', [LoginController::class, 'index'])->name('login');
 
 route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
@@ -37,13 +36,8 @@ route::post('/jenisbarang/update/{id}', [JenisBarangController::class, 'update']
 route::get('/jenisbarang/destroy/{id}', [JenisBarangController::class, 'destroy']);
 
 route::get('/transaksi', [TransaksiController::class, 'index']);
-route::get('/transaksi/add', [TransaksiController::class, 'add']);
+route::get('/transaksi/add', [TransaksiController::class, 'add'])->name('transaksi.add');
 route::post('/transaksi/store', [TransaksiController::class, 'store']);
-route::post('/transaksi/update/{id}', [TransaksiController::class, 'update']);
-route::get('/transaksi/delete/{id}', [TransaksiController::class, 'delete']);
-
-route::get('/detailtransaksi', [DetailTransaksiController::class, 'index']);
-route::get('/detailtransaksi/add', [DetailTransaksiController::class, 'add']);
-route::post('/detailtransaksi/store', [DetailTransaksiController::class, 'store']);
-route::post('/detailtransaksi/update/{id}', [DetailTransaksiController::class, 'update']);
-route::get('/detailtransaksi/delete/{id}', [DetailTransaksiController::class, 'delete']);
+route::get('/transaksi/detail/{id}', [TransaksiController::class, 'detail']);
+route::get('/transaksi/view_pdf/{id}', [TransaksiController::class, 'view_pdf']);
+route::get('/transaksi/download_pdf/{id}', [TransaksiController::class, 'download_pdf']);
